@@ -1,23 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Toggle, Layout, Icon, Button } from '@ui-kitten/components'
-
-const useToggleState = (initialState = false) => {
-    const [checked, setChecked] = React.useState(initialState);
-
-    const onCheckedChange = (isChecked) => {
-        setChecked(isChecked);
-    };
-
-    return { checked, onChange: onCheckedChange };
-};
+import { changeTask, removeTask } from '../actions'
 
 
-const CustomToggle = () => {
-    const ToggleState = useToggleState();
+const CustomToggle = ({task}) => {
+    const [ToggleState, changeToggleState] = useState(task.state===1? true:false);
+    const dispatch = useDispatch()
+
+    const changeToggle = (checked) => {
+        dispatch(changeTask(task, checked? 1:0));
+    }
+
+    const removeThisTask = () => {
+        dispatch(removeTask(task))
+    }
+
+
     return (
         <>
-            <Button accessoryLeft ={<Icon name='archive' fill='#fff' style={{ width: 30, height: 30, float: 'left' }} />} style = {{marginRight:5}} appearance='ghost' ></Button>
-            <Toggle status='success' {...ToggleState}></Toggle>
+            <Button accessoryLeft ={<Icon name='archive' fill='#fff' style={{ width: 30, height: 30, float: 'left' }} />} style = {{marginRight:5}} appearance='ghost' onPress = {() => {removeThisTask()}} ></Button>
+            <Toggle status='success' checked = {ToggleState} onChange = {(e) => {changeToggle(e)}}></Toggle>
         </>)
 
 }

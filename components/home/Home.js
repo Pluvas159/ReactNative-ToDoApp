@@ -21,12 +21,12 @@ const Home = ({ navigation }) => {
       };
 
     const renderItem = ({ item, index}) => (
-        <ListItem title = {item.title} description = {item.description} onPress = {(e) => {navigateTask(); dispatch(updateTask(item))}} accessoryRight = {renderItemRight}/>);
+        <ListItem title = {item.title} description = {item.description} onPress = {(e) => {navigateTask(); dispatch(updateTask(item))}} accessoryRight = {() => renderItemRight(item)}/>);
 
-    const renderItemRight = () => (
-            <CustomToggle />
+    const renderItemRight = (item) => (
+            <CustomToggle task = {item} />
       )  
-
+    //console.log(tasks)    
     return (
         <SafeAreaView>
             <Layout style = {{height:'100%'}}>

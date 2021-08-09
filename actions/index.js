@@ -28,3 +28,14 @@ const initSuccessful = (tasks) => ({
   payload: { tasks }
 }
 );
+
+export const changeTask = (task, state) => ({
+    type: 'CHANGE_TASK',
+    payload: {task, state}
+
+})
+
+export const removeTask = (task) => ({
+  type: 'REMOVE_TASK',
+  payload: {task}
+})

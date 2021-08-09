@@ -19,7 +19,11 @@ const Task = ({ navigation }) => {
     return (
         <SafeAreaView >
             <Layout style = {{height:'100%'}}>
-                <Text category='h1' style = {{padding: 0, margin:0, width: '100%', textAlign: 'center'}} >{task.title}</Text>
+                <Text category='h1' style = {{padding: 5, margin:0, width: '100%', textAlign: 'center'}} >{task.title}</Text>
+                <Text category='h4' style = {{padding: 10, margin:0, width: '100%', textAlign: 'right'}} status= {task.state===1? 'success': 'warning'} >{task.state===1? 'Completed': 'Not yet completed' }</Text>
+                <Divider />
+                <Text category='h2' style = {{padding: 5, margin:0, width: '100%', textAlign: 'left', opacity:0.5}} status = 'primary'>Description:</Text>
+                <Text category='h5' style = {{padding: 5, margin:0, width: '100%', textAlign: 'left', opacity:0.5}} >{task.description}</Text>
 
             </Layout>
         </SafeAreaView>

@@ -1,4 +1,4 @@
-import { Layout, Input, Divider, Button } from '@ui-kitten/components';
+import { Layout, Input, Text, Button } from '@ui-kitten/components';
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { useDispatch } from 'react-redux';
@@ -16,11 +16,11 @@ const AddTask = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Layout style = {{height:'100%'}}>
-                <Input placeholder = 'What to do next?' value = {title} onChangeText={e => setTitle(e)} status = 'primary'/>
-                <Divider style = {{height: 8}}/>
-                <Input placeholder = 'Description' value = {description} onChangeText={e => setDescription(e)} multiline={true} textStyle={{ minHeight: 128 }}/>
-                <Divider />
-                <Button style= {{position: 'absolute', width: '50%', height: '5%', bottom:0, right:'25%', marginBottom:'10%', textColor: 'black' }} status = 'primary' onPress={() => {dispatch(addTask({title: title, description: description, status: 0})); navigateBack()}}>CREATE</Button>
+                <Text style = {{padding:19, paddingBottom:2}} status = 'primary'>Title:</Text>
+                <Input placeholder = 'What to do next?' value = {title} onChangeText={e => setTitle(e)} status = 'primary' style = {{padding:20, paddingTop:0}}/>
+                <Text style = {{padding:19, paddingBottom:2}} status = 'primary'>Description:</Text>
+                <Input placeholder = 'Description' value = {description} onChangeText={e => setDescription(e)} status = 'primary' textStyle = {{minHeight:100, textAlignVertical : 'top'}} multiline={true} style = {{padding:20, paddingTop:0}}/>
+                <Button style= {{position: 'absolute', width: '50%', height: '5%', bottom:0, right:'25%', marginBottom:'10%', textColor: 'black' }} status = 'primary' onPress={() => {if(title!=='' && description !==''){dispatch(addTask({title: title, description: description, state: 0})); navigateBack()}}}>CREATE</Button>
             </Layout>
         </SafeAreaView>)
 
